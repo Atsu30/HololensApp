@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a4478fc16a30b8d4791de0eba1af157c
+timeCreated: 1529742501
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - focusOn: {fileID: 2100000, guid: ae807562865fee3439bce482908d8881, type: 2}
+  - focusOut: {fileID: 2100000, guid: 6e0216ead468b6746a0c1b1021b0b91f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
