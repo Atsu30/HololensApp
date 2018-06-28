@@ -4,7 +4,7 @@ using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 using System;
 
-public class Shoot : MonoBehaviour, IInputClickHandler
+public class Player : MonoBehaviour, IInputClickHandler
 {
 
     //Cube Prefab を扱う変数
@@ -14,13 +14,10 @@ public class Shoot : MonoBehaviour, IInputClickHandler
     //AirTapされたときに呼び出される関数
     public void OnInputClicked(InputClickedEventData eventData)
     {
-        //throw new NotImplementedException();
-        Debug.Log("shoot!!");
-        //Cube Prefab の情報を用いて実体化
         GameObject ball = GameObject.Instantiate(shootingBall);
-        //自分からみて前方1.2mの位置を空間内の位置に変換
+        //ballを向いている方向に発射
         ball.transform.position = Camera.main.transform.TransformPoint(0, 0, 1.2f);
-        ball.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * BallPower);
+        ball.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * BallPower, ForceMode.Impulse);
         Destroy(ball, 5f);
     }
 
