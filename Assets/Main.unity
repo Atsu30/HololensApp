@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceObjectPrefabs:
-  - {fileID: 1064355158377042, guid: 273e3b15cb4f99e42b14a78b5fe96ffb, type: 2}
+  - {fileID: 1858070525038692, guid: 65dcdbc59b68cfa4c82549bb14e47bcf, type: 2}
 --- !u!1001 &119943827
 Prefab:
   m_ObjectHideFlags: 0
