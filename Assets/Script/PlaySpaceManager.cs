@@ -28,6 +28,9 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
     [Tooltip("Minimum number of wall planes required in order to exit scanning/processing mode.")]
     public uint minimumWalls = 1;
 
+    public float timeOut;
+    private float timeElapsed;
+
     /// <summary>
     /// Indicates if processing of the surface meshes is complete.
     /// </summary>
@@ -85,6 +88,21 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
 
                 // 3.a: Set meshesProcessed to true.
                 meshesProcessed = true;
+            }
+        }
+
+        if (meshesProcessed)
+        {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed >= timeOut)
+            {
+                List<GameObject> horizontal = new List<GameObject>();
+                List<GameObject> vertical = new List<GameObject>();
+                horizontal = SurfaceMeshesToPlanes.Instance.GetActivePlanes(PlaneTypes.Table | PlaneTypes.Floor);
+                vertical = SurfaceMeshesToPlanes.Instance.GetActivePlanes(PlaneTypes.Wall);
+                EnemyManager.Instance.GenerateItemsInWorld(horizontal, vertical);
+
+                timeElapsed = 0.0f;
             }
         }
     }
@@ -182,7 +200,7 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
     /// <summary>
     /// Called when the GameObject is unloaded.
     /// </summary>
-    private void OnDestroy()
+    new private void OnDestroy()
     {
         if (SurfaceMeshesToPlanes.Instance != null)
         {

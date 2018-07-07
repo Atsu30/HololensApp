@@ -97,7 +97,16 @@ public class EnemyManager : Singleton<EnemyManager>
                 UsedPlanes.Add(index);
                 GameObject surface = surfaces[index];
                 SurfacePlane plane = surface.GetComponent<SurfacePlane>();
-                position = surface.transform.position + (plane.PlaneThickness * plane.SurfaceNormal);
+
+                //ランダムにポジションを選ぶ
+                var originPos = surface.transform.position;
+                float ScaleX = surface.transform.localScale.x;
+                float ScaleY = surface.transform.localScale.y;
+                Vector3 vecY = surface.transform.rotation * surface.transform.forward;
+                Vector3 vecX = Quaternion.Euler(0, 90, 0) * vecY;
+
+                position = originPos + vecY * Random.Range(-ScaleY / 2, ScaleY / 2) + vecX * Random.Range(-ScaleX / 2, ScaleX / 2);
+                position = position + (plane.PlaneThickness * plane.SurfaceNormal);
                 position = AdjustPositionWithSpatialMap(position, plane.SurfaceNormal);
                 rotation = Camera.main.transform.localRotation;
 

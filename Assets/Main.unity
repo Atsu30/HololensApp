@@ -399,6 +399,7 @@ MonoBehaviour:
   secondaryMaterial: {fileID: 2100000, guid: d16fa791f451d2c40a6f24bfd3ac789c, type: 2}
   minimumFloors: 1
   minimumWalls: 1
+  timeOut: 5
 --- !u!4 &1562779913
 Transform:
   m_ObjectHideFlags: 0
